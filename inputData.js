@@ -42,7 +42,6 @@ const electricity = [
 ]
 
 function addEmissionToDb(value){
-    console.log(value.method);
     new Emission({
         method: value.method,
         emissions: value.emissions,
@@ -111,7 +110,7 @@ function inputData(){
         if(emissions){
             console.log(emissions);
         }else {
-            console.log("No emissions found");
+            console.log("No well-to-tank values found");
         }
     });
     Electricity.find({}, (err, emissions) => {
@@ -121,7 +120,7 @@ function inputData(){
         if(emissions){
             console.log(emissions);
         }else {
-            console.log("No emissions found");
+            console.log("No electricity production emissions found");
         }
     });
 }
