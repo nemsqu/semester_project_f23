@@ -1,6 +1,6 @@
 var express = require('express');
-const Electricity = require('../models/Electricity');
 var router = express.Router();
+const Electricity = require('../models/Electricity');
 const Emission = require('../models/Emission');
 const Production = require('../models/Production');
 

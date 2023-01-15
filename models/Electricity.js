@@ -9,4 +9,4 @@ let electricitySchema = new Schema ({
 });
 
 
-module.exports = mongoose.model("emission", electricitySchema);
+module.exports = mongoose.model("electricity", electricitySchema);
