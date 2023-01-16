@@ -1,5 +1,5 @@
 const Electricity = require('./models/Electricity');
-const Emission = require('./models/Emission');
+const Method = require('./models/Method');
 const Production = require('./models/Production');
 
 /*units:
@@ -13,7 +13,7 @@ const Production = require('./models/Production');
 7 = kWh/100km
 */
 
-const emissions = [
+const methods = [
     {method: "bus", emissions: 41, passengers: 1, fuel: "all", fuelConsumption: 0, unit: 0},
     {method: "car", emissions: 70, passengers: 1, fuel: "all", fuelConsumption: 6, unit: 5},
     {method: "petrolMoped", emissions: 52, passengers: 0, fuel: "all", fuelConsumption: 3, unit: 5},
@@ -52,8 +52,8 @@ const electricity = [
     {fuel: "wind", emissions: 11, unit: 2},
 ]
 
-function addEmissionToDb(value){
-    new Emission({
+function addMethodToDb(value){
+    new Method({
         method: value.method,
         emissions: value.emissions,
         passengers: value.passengers,
@@ -96,7 +96,7 @@ function addElectricityToDb(value){
 
 function inputData(){
     console.log("Initializing database");
-    Emission.find({}, (err, values) => {
+    Method.find({}, (err, values) => {
         if(err) {
             console.log(err);
         }
@@ -104,8 +104,8 @@ function inputData(){
             console.log(values);
         }else {
             console.log("Adding emissions to db");
-            emissions.forEach(value => {
-                addEmissionToDb(value);
+            methods.forEach(value => {
+                addMethodToDb(value);
             });
         }
     });

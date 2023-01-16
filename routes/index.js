@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const Electricity = require('../models/Electricity');
-const Emission = require('../models/Emission');
+const Emission = require('../models/Method');
 const Production = require('../models/Production');
 
 //retrieve all emission data from database

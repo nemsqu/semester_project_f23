@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-let emissionSchema = new Schema ({
+let methodSchema = new Schema ({
     "method": String,
     "emissions": Number,  //co2 or co2e ?
     "passengers": Number, //if 1 then emissions = co2/pkm, otherwise pkm = emissions/passengers
@@ -12,4 +12,4 @@ let emissionSchema = new Schema ({
 });
 
 
-module.exports = mongoose.model("emission", emissionSchema);
+module.exports = mongoose.model("method", methodSchema);
