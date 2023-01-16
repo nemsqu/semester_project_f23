@@ -7,7 +7,8 @@ let emissionSchema = new Schema ({
     "emissions": Number,  //co2 or co2e ?
     "passengers": Number, //if 1 then emissions = co2/pkm, otherwise pkm = emissions/passengers
     "fuel": String, //probably needs to be specified separately
-    "fuelConsumption": Number //l per 100km ? Doesn't work with electricity though
+    "fuelConsumption": Number,
+    "unit": Number //unit for consumption (enum)
 });
 
 

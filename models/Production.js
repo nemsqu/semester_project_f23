@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 
 let productionSchema = new Schema ({
     "fuel": String,
-    "emissions": Number,  //co2 or co2e ?
-    "unit": String, //string or enum?
+    "emissions": Number,
+    "unit": Number, //enum
 });
 
 
