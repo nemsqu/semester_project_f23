@@ -1,33 +1,33 @@
 var express = require('express');
 var router = express.Router();
 const Electricity = require('../models/Electricity');
-const Emission = require('../models/Method');
-const Production = require('../models/Production');
+const Method = require('../models/Method');
+const Fuel = require('../models/Fuel');
 
-//retrieve all emission data from database
+//retrieve all methods from database
 router.get('/emissionData', function(req, res, next) {
-  Emission.find({}, (err, emissions) => {
+  Method.find({}, (err, methods) => {
     if(err) {
       return res.status(404).send({'error': err});
     }
-    if(emissions){
-      return res.send(emissions);
+    if(methods){
+      return res.send(methods);
     }else {
-      return res.json({error: "No emissions found"});
+      return res.json({error: "No methods found"});
     }
   })
 });
 
 //retrieve all fuel production data from database
-router.get('/productionData', function(req, res, next) {
-  Production.find({}, (err, production) => {
+router.get('/fuel', function(req, res) {
+  Fuel.find({}, (err, fuels) => {
     if(err) {
       return res.status(404).send({'error': err});
     }
-    if(production){
-      return res.send(production);
+    if(fuels){
+      return res.send(fuels);
     }else {
-      return res.json({error: "No emissions found"});
+      return res.json({error: "No emissions related to fuels found"});
     }
   })
 });
@@ -41,27 +41,28 @@ router.get('/electricityData', function(req, res, next) {
     if(electricity){
       return res.send(electricity);
     }else {
-      return res.json({error: "No emissions found"});
+      return res.json({error: "No emissions related to electricity production found"});
     }
   })
 });
 
 //for manually adding emission data to database, add parameters to body of the request
-router.post('/emissionData', function(req, res, next) {
-  new Emission({
+router.post('/methodData', function(req, res, next) {
+  new Method({
     method: req.body.method,
     emissions: req.body.emissions,
     passengers: req.body.passengers,
     fuel: req.body.fuel,
-    fuelConsumption: req.body.fuelConsumption
+    fuelConsumption: req.body.fuelConsumption,
+    unit: req.body.unit
   }).save((err) => {
     if(err) return res.send(err);
     return res.send("ok");
   });
 });
 
-router.post('/productionData', function(req, res, next) {
-  new Production({
+router.post('/fuelData', function(req, res, next) {
+  new Fuel({
     fuel: req.body.fuel,
     emissions: req.body.emissions,
     unit: req.body.unit

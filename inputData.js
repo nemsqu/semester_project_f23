@@ -1,6 +1,6 @@
 const Electricity = require('./models/Electricity');
 const Method = require('./models/Method');
-const Production = require('./models/Production');
+const Fuel = require('./models/Fuel');
 
 /*units:
 0 = unknown
@@ -25,6 +25,8 @@ const methods = [
     {method: "electricCar", emissions: 0, passengers: 0, fuel: "electricity", fuelConsumption: 20, unit: 7},
     {method: "gasCar", emissions: 70, passengers: 1, fuel: "gas", fuelConsumption: 4, unit: 6},
     {method: "electricScooter", emissions: 0, passengers: 0, fuel: "electricity", fuelConsumption: 0.7, unit: 7},
+    {method: "walk", emissions: 0, passengers: 0, fuel: "all", fuelConsumption: 0, unit: 0},
+    {method: "bike", emissions: 0, passengers: 0, fuel: "all", fuelConsumption: 0, unit: 0},
 ]
 
 const production = [
@@ -68,8 +70,8 @@ function addMethodToDb(value){
       });
 }
 
-function addProductionToDb(value){
-    new Production({
+function addFuelToDb(value){
+    new Fuel({
         fuel: value.fuel,
         emissions: value.emissions,
         unit: value.unit
@@ -103,13 +105,13 @@ function inputData(){
         if(values.length !== 0){
             console.log(values);
         }else {
-            console.log("Adding emissions to db");
+            console.log("Adding transportation methods to db");
             methods.forEach(value => {
                 addMethodToDb(value);
             });
         }
     });
-    Production.find({}, (err, values) => {
+    Fuel.find({}, (err, values) => {
         if(err) {
             console.log(err);
         }
@@ -118,7 +120,7 @@ function inputData(){
         }else {
             console.log("Adding well-to-tank values to db");
             production.forEach(value => {
-                addProductionToDb(value);
+                addFuelToDb(value);
             });
         }
     });
