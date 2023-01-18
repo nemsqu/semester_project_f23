@@ -13,9 +13,16 @@ const Fuel = require('./models/Fuel');
 7 = kWh/100km
 */
 
+//passengers = 1 means emissions are per person
+//passengers = 0 means emissions are for the whole unit and should be divided by number of passengers
 const methods = [
     {method: "bus", emissions: 41, passengers: 1, fuel: "all", fuelConsumption: 0, unit: 0},
     {method: "car", emissions: 70, passengers: 1, fuel: "all", fuelConsumption: 6, unit: 5},
+    {method: "smallCar", emissions: 98, passengers: 0, fuel: "all", fuelConsumption: 7.3, unit: 5},
+    {method: "mediumCar", emissions: 101, passengers: 0, fuel: "all", fuelConsumption: 10.2, unit: 5},
+    {method: "largeCar", emissions: 121, passengers: 0, fuel: "all", fuelConsumption: 12.1, unit: 5},
+    {method: "SUV", emissions: 170, passengers: 0, fuel: "all", fuelConsumption: 13.8, unit: 5},
+    {method: "pickupTruck", emissions: 234, passengers: 0, fuel: "all", fuelConsumption: 15.4, unit: 5},
     {method: "petrolMoped", emissions: 52, passengers: 0, fuel: "all", fuelConsumption: 3, unit: 5},
     {method: "electricMoped", emissions: 0, passengers: 0, fuel: "electricity", fuelConsumption: 3, unit: 7},
     {method: "motorbike", emissions: 104.9, passengers: 0, fuel: "all", fuelConsumption: 4.15, unit: 5},
@@ -23,7 +30,12 @@ const methods = [
     {method: "train", emissions: 2.2, passengers: 1, fuel: "all", fuelConsumption: 0, unit: 0},
     {method: "ebike", emissions: 0, passengers: 0, fuel: "electricity", fuelConsumption: 0.7, unit: 7},
     {method: "electricCar", emissions: 0, passengers: 0, fuel: "electricity", fuelConsumption: 20, unit: 7},
-    {method: "gasCar", emissions: 70, passengers: 1, fuel: "gas", fuelConsumption: 4, unit: 6},
+    {method: "alternativeFuelCar", emissions: 70, passengers: 1, fuel: "alternativeFuel", fuelConsumption: 4, unit: 6},
+    {method: "alternativeFuelSmallCar", emissions: 98, passengers: 0, fuel: "alternativeFuel", fuelConsumption: 3, unit: 6},
+    {method: "alternativeFuelMediumCar", emissions: 101, passengers: 0, fuel: "alternativeFuel", fuelConsumption: 4.5, unit: 6},
+    {method: "alternativeFuelLargeCar", emissions: 121, passengers: 0, fuel: "alternativeFuel", fuelConsumption: 6.9, unit: 6},
+    {method: "alternativeFuelSUV", emissions: 170, passengers: 0, fuel: "alternativeFuel", fuelConsumption: 5.5, unit: 6},
+    {method: "alternativeFuelPickupTruck", emissions: 234, passengers: 0, fuel: "alternativeFuel", fuelConsumption: 6, unit: 6},
     {method: "electricScooter", emissions: 0, passengers: 0, fuel: "electricity", fuelConsumption: 0.7, unit: 7},
     {method: "walk", emissions: 0, passengers: 0, fuel: "all", fuelConsumption: 0, unit: 0},
     {method: "bike", emissions: 0, passengers: 0, fuel: "all", fuelConsumption: 0, unit: 0},
