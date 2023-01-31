@@ -5,7 +5,7 @@ const Method = require('../models/Method');
 const Fuel = require('../models/Fuel');
 
 //retrieve all methods from database
-router.get('/emissionData', function(req, res, next) {
+router.get('/methodData', function(req, res, next) {
   Method.find({}, (err, methods) => {
     if(err) {
       return res.status(404).send({'error': err});
@@ -19,7 +19,7 @@ router.get('/emissionData', function(req, res, next) {
 });
 
 //retrieve all fuel production data from database
-router.get('/fuel', function(req, res) {
+router.get('/fuelData', function(req, res) {
   Fuel.find({}, (err, fuels) => {
     if(err) {
       return res.status(404).send({'error': err});
