@@ -1,28 +1,23 @@
 require('dotenv').config();
 var express = require('express');
-var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require("mongoose");
-const passport = require('passport');
-const dataInit = require('./inputData');
+
 
 
 var indexRouter = require('./routes/index');
 
 var app = express();
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(passport.initialize());
 
 app.use('/api', indexRouter);
 
-const mongoDB = "mongodb://127.0.0.1/semesterproject_1";
+const mongoDB = "mongodb://localhost:27017/semesterproject_fall";
 mongoose.connect(mongoDB)
-    .then(()=>dataInit.inputData())
     .catch((err)=>console.log(err));
 mongoose.Promise = Promise;
 const db = mongoose.connection;
