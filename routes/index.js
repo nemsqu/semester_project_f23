@@ -269,6 +269,22 @@ router.post('/message/new', (req, res) => {
   });
 })
 
+//update message as read
+router.get('/message/:id/read', async (req, res) => {
+  try{
+    const message = await Message.findById(req.params.id);
+    if(!message){
+      res.send({error: "Could not find message"});
+    } else {
+      message.read = true;
+      await message.save();
+      res.send({message: message});
+    }
+  } catch(e) {
+    res.send({error: e});
+  }
+})
+
 //start a new conversation through review
 router.post('/messageChain/new', async (req, res) => {
   try{
