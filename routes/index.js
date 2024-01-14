@@ -299,7 +299,7 @@ router.post('/messageChain/new', async (req, res) => {
       sender: req.body.sender,
       receiver: req.body.receiver,
       senderName: req.body.senderName,
-      receiver: req.body.receiverName,
+      receiverName: req.body.receiverName,
       read: false,
       chainId: chain._id
     })
